@@ -49,16 +49,16 @@ public class Student {
     public static void promoteAllStudents() {
         for (int i = 0; i < students.size(); i++) {
             Student student = students.get(i);
-            StudyProgramme programme = student.studyProgramme;
-            int currentSemester = student.currentSemester;
-            int ITNs = student.ITNs;
+            StudyProgramme programme = student.getStudyProgramme();
+            int currentSemester = student.getCurrentSemester();
+            int ITNs = student.getITNs();
 
             if (currentSemester < programme.getNumberOfSemesters() && ITNs < programme.getITNsBeforePromotion()) {
-                student.currentSemester++;
+                student.setCurrentSemester(currentSemester + 1);
             } else if (currentSemester > programme.getNumberOfSemesters()) {
-                student.status = "absolwent";
+                student.setStatus("absolwent");
             } else {
-                System.out.println("Student " + student.studyProgramme.getName() + " pozostaje na aktualnym semestrze");
+                System.out.println("Student " + programme.getName() + " pozostaje na aktualnym semestrze");
             }
         }
     }
